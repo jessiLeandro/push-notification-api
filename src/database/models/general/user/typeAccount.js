@@ -1,45 +1,43 @@
-const Sequelize = require('sequelize')
+const Sequelize = require("sequelize");
 
-module.exports = (sequelize) => {
-  const typeAccount = sequelize.define('typeAccount', {
+module.exports = sequelize => {
+  const typeAccount = sequelize.define("typeAccount", {
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
-      primaryKey: true,
+      primaryKey: true
     },
     typeName: {
       type: Sequelize.STRING,
       allowNull: false,
-      unique: true,
+      unique: true
     },
     stock: {
       type: Sequelize.BOOLEAN,
-      defaultValue: false,
+      defaultValue: false
     },
     labTec: {
       type: Sequelize.BOOLEAN,
-      defaultValue: false,
+      defaultValue: false
     },
     responsibleUser: {
       type: Sequelize.STRING,
-      allowNull: false,
-    },
-  })
+      allowNull: false
+    }
+  });
 
-
-  typeAccount.associate = (models) => {
+  typeAccount.associate = models => {
     typeAccount.hasOne(models.resources, {
       foreignKey: {
-        allowNull: true,
-      },
-    })
+        allowNull: true
+      }
+    });
     // typeAccount.belongsTo(models.user, {
     //   foreignKey: {
     //     allowNull: false,
     //   },
     // })
-  }
+  };
 
-
-  return typeAccount
-}
+  return typeAccount;
+};

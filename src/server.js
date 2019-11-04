@@ -3,8 +3,8 @@
 const webpush = require("web-push");
 const Express = require("express");
 const bodyParser = require("body-parser");
-// const cors = require("cors");
-// const logger = require("morgan");
+const cors = require("cors");
+const logger = require("morgan");
 const databaseHelper = require("./helpers/database");
 // const errorFormatter = require("./helpers/errors/formatter");
 const loginRoute = require("./routes/login");
@@ -20,7 +20,7 @@ app.use(Express.static("client"));
 // app.use(Express.static("public"));
 app.use(bodyParser.json());
 app.use("/oapi", loginRoute);
-app.use("/api", auth, protectRoute);
+app.use("/api", protectRoute);
 
 const publicVapidKey = process.env.PUBLIC_VAPID_KEY;
 const privateVapidKey = process.env.PRIVATE_VAPID_KEY;
