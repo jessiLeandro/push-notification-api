@@ -1,15 +1,15 @@
-require("dotenv").config();
-require("./helpers/loadenv");
+// require("dotenv").config();
+// require("./helpers/loadenv");
 const webpush = require("web-push");
 const Express = require("express");
 const bodyParser = require("body-parser");
-const cors = require("cors");
-const logger = require("morgan");
+// const cors = require("cors");
+// const logger = require("morgan");
 const databaseHelper = require("./helpers/database");
-const errorFormatter = require("./helpers/errors/formatter");
+// const errorFormatter = require("./helpers/errors/formatter");
 const loginRoute = require("./routes/login");
 const protectRoute = require("./routes/protect");
-const { auth } = require("./middlewares/authentic");
+// const { auth } = require("./middlewares/authentic");
 
 const app = Express();
 
@@ -45,18 +45,18 @@ app.post("/subscribe", (req, res) => {
     .catch(err => console.log("sendNotification" + err));
 });
 
-/* error handlers */
-app.use((err, req, res, next) => {
-  //eslint-disable-line
+// /* error handlers */
+// app.use((err, req, res, next) => {
+//   //eslint-disable-line
 
-  /* eslint-disable no-console */
-  console.error(err.stack || err);
-  console.error(JSON.stringify(err));
-  const formattedError = errorFormatter(err);
+//   /* eslint-disable no-console */
+//   console.error(err.stack || err);
+//   console.error(JSON.stringify(err));
+//   const formattedError = errorFormatter(err);
 
-  res.status(formattedError.status || 500);
-  res.json(formattedError);
-});
+//   res.status(formattedError.status || 500);
+//   res.json(formattedError);
+// });
 
 // app.post("push-not", (req, res) => {});
 
